@@ -1,14 +1,18 @@
 NAME	=	philo
-CC		=	cc -Wextra -Wall -Werror -g -lpthread
-INCLUDE =	-I ./include \
+CC		=	cc -Wextra -Wall -Werror -g #-lpthread
+INCLUDE	=	-I ./include
 OBJDIR	=	obj
 OBJS	=	$(SRCS:%.c=$(OBJDIR)/%.o)
-SRCS	=
+SRCS	=	srcs/main.c \
+			srcs/exit.c \
+			srcs/input_check.c \
+			srcs/utils/utils.c
 
 all: $(OBJDIR) $(NAME)
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)/srcs
+	@mkdir -p $(OBJDIR)/srcs/utils
 
 $(OBJDIR)/%.o: %.c
 	@$(CC) -o $@ -c $< $(INCLUDE) && printf "Compiling: $(notdir $<)\n"
