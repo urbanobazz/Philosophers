@@ -5,7 +5,7 @@ OBJDIR	=	obj
 OBJS	=	$(SRCS:%.c=$(OBJDIR)/%.o)
 SRCS	=	srcs/main.c \
 			srcs/exit.c \
-			srcs/input_check.c \
+			srcs/activities.c \
 			srcs/utils/utils.c
 
 all: $(OBJDIR) $(NAME)

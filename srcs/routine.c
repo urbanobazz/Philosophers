@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_check.c                                      :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 19:28:02 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/02/29 19:28:28 by ubazzane         ###   ########.fr       */
+/*   Created: 2024/03/01 22:55:58 by ubazzane          #+#    #+#             */
+/*   Updated: 2024/03/01 22:56:18 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	validate_input(int argc, char **argv)
+void	*routine(void *arg)
 {
-	int	i;
-	int	j;
+	t_philo *philo;
 
-	i = 1;
-	if (argc == 5 || argc == 6)
+	philo = (t_philo *)arg;
+	while (philo->data->life_state == ALIVE)
 	{
-		while (i < argc)
-		{
-			j = 0;
-			while (argv[i][j] != '\0')
-			{
-				if (!ft_isdigit(argv[i][j]))
-					exit_error(NULL, "Invalid input: arguments must be composed of numbers\n");
-				j++;
-			}
-			i++;
-		}
+		if (is_dead(philo) == DEAD)
+			return (0);
+		if (take_forks(philo) == DEAD)
+			return (0);
+		if (eat(philo) == DEAD)
+			return (0);
+		if (sleep(philo) == DEAD)
+			return (0);
+		if (think(philo) == DEAD)
+			return (0);
 	}
-	else
-		exit_error(NULL, "Invalid argument amount\n");
+	return (0);
 }

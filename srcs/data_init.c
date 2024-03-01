@@ -6,11 +6,14 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:16:41 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/02/29 20:58:06 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/01 22:58:09 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+static void	*philos_init(t_data *data);
+static void	forks_init(t_data *data);
 
 void	data_init(t_data *data, int argc, char **argv)
 {
@@ -25,11 +28,14 @@ void	data_init(t_data *data, int argc, char **argv)
 	else
 		data->meals_count = -1;
 	data->starting_time = 0;
+	data->turns = 0;
+	data->life_state = ALIVE;
+	pthread_mutex_init(&data->data_mutex, NULL);
 	forks_init(data);
 	philos_init(data);
 }
 
-void	*philos_init(t_data *data)
+static void	*philos_init(t_data *data)
 {
 	int i;
 
@@ -42,13 +48,15 @@ void	*philos_init(t_data *data)
 		data->philos[i].id = i + 1;
 		data->philos[i].last_meal = 0;
 		data->philos[i].eaten_meals = 0;
+		data->philos[i].thread_id = 0;
 		data->philos[i].right_fork = &data->forks[i];
 		data->philos[i].left_fork = &data->forks[(i + 1) % data->philo_count];
+		data->philos[i].data = data;
 		i++;
 	}
 }
 
-void	forks_init(t_data *data)
+static void	forks_init(t_data *data)
 {
 	int	i;
 
@@ -59,7 +67,7 @@ void	forks_init(t_data *data)
 	while (i < data->philo_count)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL))
-			exit_error(data, "Mutex init error\n");
+			exit_error(data, "Mutex init error(fork)\n");
 		i++;
 	}
 }

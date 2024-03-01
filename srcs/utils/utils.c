@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:57:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/02/29 19:02:42 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/01 22:57:51 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,27 @@ long long	ft_atoi(const char *str)
 		str++;
 	}
 	return (sign * res);
+}
+
+long long	get_time(void)
+{
+	struct timeval tv;
+	long long seconds;
+	long long microseconds;
+	long long milliseconds;
+
+	gettimeofday(&tv, NULL);
+
+	seconds = tv.tv_sec;
+	microseconds = tv.tv_usec;
+	milliseconds = seconds * 1000 + microseconds / 1000;
+	return (0);
+}
+void	pass_time(long long time, t_philo *philo)
+{
+	long long start;
+
+	start = get_time();
+	while (get_time() - start < time && life_state(philo) == ALIVE)
+		usleep(100);
 }
