@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:20:01 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 12:34:12 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 14:39:34 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_exit(t_data *data, char *msg, int status)
 			free_forks(data);
 		if (data->philos)
 			free(data->philos);
+		pthread_mutex_destroy(&data->data_mutex);
+		pthread_mutex_destroy(&data->print_mutex);
 		free(data);
 	}
 	if (msg)

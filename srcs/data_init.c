@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:16:41 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 13:07:42 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 14:37:15 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_data	*data_init(int argc, char **argv)
 	data->turns = 0;
 	data->life_state = ALIVE;
 	pthread_mutex_init(&data->data_mutex, NULL);
+	pthread_mutex_init(&data->print_mutex, NULL);
 	forks_init(data);
 	philos_init(data);
 	return (data);

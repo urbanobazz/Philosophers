@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 14:22:21 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 14:41:10 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_data
 	int				life_state;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	data_mutex;
+	pthread_mutex_t	print_mutex;
 	t_philo			*philos;
 }				t_data;
 
@@ -63,6 +64,7 @@ int			ft_isdigit(int arg);
 long		ft_atol(const char *str);
 long		get_time(void);
 void		pass_time(long long time, t_philo *philo);
+void		print_status(t_philo *philo, char *status);
 
 // Exit
 void	ft_exit(t_data *data, char *msg, int status);
