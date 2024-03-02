@@ -1,0 +1,32 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug philo (LLDB)",
+			"type": "lldb",
+			"request": "launch",
+			"program": "${workspaceFolder}/philo",
+			"args": ["5", "800", "200", "200"],
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "build philo"
+		},
+		{
+			"name": "Debug philo (GDB)",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/philo",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "build philo",
+			"MIMode": "gdb",
+			"miDebuggerPath": "/usr/bin/gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			]
+		}
+	]
+}
