@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:28:02 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/01 22:57:15 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:54:12 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,15 @@ int	take_forks(t_philo *philo)
 	if (life_state(philo) == ALIVE)
 		printf("%lld %ld has taken a fork\n", get_time() - philo->data->starting_time, philo->id);
 	if (philo->id % 2 == 0)
+	{
 		if (pthread_mutex_lock(philo->left_fork) != 0)
 			pthread_mutex_unlock(philo->right_fork);
+	}
 	else
+	{
 		if (pthread_mutex_lock(philo->right_fork) != 0)
 			pthread_mutex_unlock(philo->left_fork);
+	}
 	if (life_state(philo) == ALIVE)
 	{
 		printf("%lld %ld has taken a fork\n", get_time() - philo->data->starting_time, philo->id);
@@ -48,7 +52,7 @@ int	take_forks(t_philo *philo)
 	}
 	return (DEAD);
 }
-int	eat(t_philo *philo)
+int	eating(t_philo *philo)
 {
 	if (life_state(philo) == ALIVE)
 	{
@@ -63,7 +67,7 @@ int	eat(t_philo *philo)
 	return (DEAD);
 }
 
-int	sleep(t_philo *philo)
+int	sleeping(t_philo *philo)
 {
 	if (life_state(philo) == ALIVE)
 	{
@@ -74,7 +78,7 @@ int	sleep(t_philo *philo)
 	return (DEAD);
 }
 
-int	think(t_philo *philo)
+int	thinking(t_philo *philo)
 {
 	if (life_state(philo) == ALIVE)
 	{

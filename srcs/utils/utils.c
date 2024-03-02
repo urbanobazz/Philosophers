@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:57:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/01 22:57:51 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 13:01:24 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_isdigit(int arg)
 	return (arg >= '0' && arg <= '9');
 }
 
-long long	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
 	long long	res;
 	long long	sign;
@@ -57,7 +57,7 @@ long long	get_time(void)
 	seconds = tv.tv_sec;
 	microseconds = tv.tv_usec;
 	milliseconds = seconds * 1000 + microseconds / 1000;
-	return (0);
+	return (milliseconds);
 }
 void	pass_time(long long time, t_philo *philo)
 {

@@ -6,25 +6,27 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:16:41 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/01 22:58:09 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 13:07:42 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	*philos_init(t_data *data);
+static void	philos_init(t_data *data);
 static void	forks_init(t_data *data);
 
-void	data_init(t_data *data, int argc, char **argv)
+t_data	*data_init(int argc, char **argv)
 {
+	t_data	*data;
+
 	if (!(data = (t_data *)malloc(sizeof(t_data))))
-		exit_error(NULL, "Malloc error\n");
-	data->philo_count = ft_atoi(argv[1]);
-	data->time_to_die = ft_atoi(argv[2]);
-	data->time_to_eat = ft_atoi(argv[3]);
-	data->time_to_sleep = ft_atoi(argv[4]);
+		ft_exit(NULL, "Malloc error\n", 1);
+	data->philo_count = ft_atol(argv[1]);
+	data->time_to_die = ft_atol(argv[2]);
+	data->time_to_eat = ft_atol(argv[3]);
+	data->time_to_sleep = ft_atol(argv[4]);
 	if (argc == 6)
-		data->meals_count = ft_atoi(argv[5]);
+		data->meals_count = ft_atol(argv[5]);
 	else
 		data->meals_count = -1;
 	data->starting_time = 0;
@@ -33,16 +35,17 @@ void	data_init(t_data *data, int argc, char **argv)
 	pthread_mutex_init(&data->data_mutex, NULL);
 	forks_init(data);
 	philos_init(data);
+	return (data);
 }
 
-static void	*philos_init(t_data *data)
+static void	philos_init(t_data *data)
 {
 	int i;
 
 	i = 0;
 	data->philos = (t_philo *)malloc(sizeof(t_philo) * data->philo_count);
 	if (!data->philos)
-		exit_error(data, "Malloc error(2)\n");
+		ft_exit(data, "Malloc error(2)\n", 1);
 	while (i < data->philo_count)
 	{
 		data->philos[i].id = i + 1;
@@ -63,11 +66,11 @@ static void	forks_init(t_data *data)
 	i = 0;
 	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_count);
 	if (!data->forks)
-		exit_error(data, "Malloc error(3)\n");
+		ft_exit(data, "Malloc error(3)\n", 1);
 	while (i < data->philo_count)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL))
-			exit_error(data, "Mutex init error(fork)\n");
+			ft_exit(data, "Mutex init error(fork)\n", 1);
 		i++;
 	}
 }

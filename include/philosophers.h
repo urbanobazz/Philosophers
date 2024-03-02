@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/01 23:07:34 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:52:17 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <limits.h>
 
 # define DEAD 1
 # define ALIVE 0
@@ -30,15 +31,15 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
-	t_data			*data;
+	struct s_data	*data;
 }				t_philo;
 
 typedef struct s_data
 {
 	long			philo_count;
-	long long		time_to_die;
-	long long		time_to_eat;
-	long long		time_to_sleep;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
 	long			meals_count;
 	long			starting_time;
 	int				turns;
@@ -48,20 +49,29 @@ typedef struct s_data
 	t_philo			*philos;
 }				t_data;
 
+// Data init
+t_data		*data_init(int argc, char **argv);
+
+// Philo init
+void		init_philosophers(t_data *data);
+
+// Monitor
+void		monitor_philosophers(t_data *data);
+
 // Utils
 int			ft_isdigit(int arg);
-long long	ft_atoi(const char *str);
+long		ft_atol(const char *str);
 long long	get_time(void);
 void		pass_time(long long time, t_philo *philo);
 
 // Exit
-void	exit_error(t_data *data, char *msg);
+void	ft_exit(t_data *data, char *msg, int status);
 
 // Activities
 int		life_state(t_philo *philo);
 int		take_forks(t_philo *philo);
-int		eat(t_philo *philo);
-int		sleep(t_philo *philo);
-int		think(t_philo *philo);
+int		eating(t_philo *philo);
+int		sleeping(t_philo *philo);
+int		thinking(t_philo *philo);
 
 #endif
