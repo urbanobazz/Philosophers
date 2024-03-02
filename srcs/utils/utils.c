@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:57:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 13:42:02 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 14:29:07 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ void	pass_time(long long time, t_philo *philo)
 	long long start;
 
 	start = get_time();
-	while (get_time() - start < time && life_state(philo) == ALIVE)
+	while (get_time() - start < time && philo->data->life_state == ALIVE)
 		usleep(100);
 }
