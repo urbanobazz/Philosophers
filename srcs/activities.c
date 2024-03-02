@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:28:02 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 16:56:13 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:22:24 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,14 @@ int	eating(t_philo *philo)
 	return (DEAD);
 }
 
-int	sleeping(t_philo *philo)
+int	sleep_and_think(t_philo *philo)
 {
 	if (philo->data->life_state == ALIVE)
 	{
 		print_status(philo, "is sleeping");
 		pass_time(philo->data->time_to_sleep, philo);
-		return (ALIVE);
-	}
-	return (DEAD);
-}
-
-int	thinking(t_philo *philo)
-{
-	if (philo->data->life_state == ALIVE)
-	{
 		print_status(philo, "is thinking");
-		//usleep(10);
+		usleep(20);
 		return (ALIVE);
 	}
 	return (DEAD);

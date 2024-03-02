@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 14:41:10 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:10:08 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_exit(t_data *data, char *msg, int status);
 // Activities
 int		take_forks(t_philo *philo);
 int		eating(t_philo *philo);
-int		sleeping(t_philo *philo);
-int		thinking(t_philo *philo);
+int		sleep_and_think(t_philo *philo);
+//int		thinking(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 22:55:58 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 14:29:43 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:22:17 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ static void	*routine(void *arg)
 			return (0);
 		if (eating(philo) == DEAD)
 			return (0);
-		if (sleeping(philo) == DEAD)
-			return (0);
-		if (thinking(philo) == DEAD)
+		if (sleep_and_think(philo) == DEAD)
 			return (0);
 	}
 	return (0);
