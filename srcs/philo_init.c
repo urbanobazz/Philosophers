@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 22:55:58 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 12:45:30 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 13:42:46 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_philosophers(t_data *data)
 	int i;
 
 	i = 0;
+	data->starting_time = get_time();
 	while (i < data->philo_count)
 	{
 		if (pthread_create(&data->philos[i].thread_id, NULL, routine, &data->philos[i]) != 0)

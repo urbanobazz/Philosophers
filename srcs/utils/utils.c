@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:57:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 13:01:24 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/02 13:42:02 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ long	ft_atol(const char *str)
 	return (sign * res);
 }
 
-long long	get_time(void)
+long	get_time(void)
 {
 	struct timeval tv;
 	long long seconds;
