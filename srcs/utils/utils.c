@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:57:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 14:42:18 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:13:10 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,21 @@ long	ft_atol(const char *str)
 {
 	long long	res;
 	long long	sign;
-	int	sign_count;
 
 	res = 0;
 	sign = 1;
-	sign_count = 0;
 	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
 		str++;
-	while (*str == '-' || *str == '+')
+	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
 			sign = -1;
 		str++;
-		sign_count++;
 	}
-	if (sign_count > 1)
-		return (0);
 	while (*str >= '0' && *str <= '9')
 	{
+		if (res > LONG_MAX / 10 || res * 10 > LONG_MAX - (*str - '0'))
+			return (-1);
 		res = res * 10 + (*str - '0');
 		str++;
 	}

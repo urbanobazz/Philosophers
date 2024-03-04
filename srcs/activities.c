@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:28:02 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 17:22:24 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:47:41 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	eating(t_philo *philo)
 	{
 		print_status(philo, "is eating");
 		philo->last_meal = get_time();
-		pass_time(philo->data->time_to_eat, philo);
+		usleep(philo->data->time_to_eat * 1000);
 		philo->eaten_meals++;
 		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(philo->left_fork);

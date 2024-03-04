@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 22:55:58 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 17:22:17 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:37:32 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,16 @@ void	init_philosophers(t_data *data)
 			ft_exit(data, "Thread init error\n", 1);
 		i++;
 	}
+}
+
+void	join_threads(t_data *data)
+{
+	int i;
+
 	i = 0;
 	while (i < data->philo_count)
 	{
+		printf("Joining thread %d\n", i);
 		if (pthread_join(data->philos[i].thread_id, NULL) != 0)
 			ft_exit(data, "Thread join error\n", 1);
 		i++;

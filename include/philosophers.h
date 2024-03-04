@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 17:10:08 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/03 15:49:29 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_data		*data_init(int argc, char **argv);
 
 // Philo init
 void		init_philosophers(t_data *data);
+void		join_threads(t_data *data);
 
 // Monitor
 void		monitor_philosophers(t_data *data);
