@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 11:42:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/05 15:40:57 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:19:54 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_all_life_state(t_data *data)
 		time = get_time();
 		if (time - data->philos[i].last_meal > data->time_to_die)
 		{
-			printf("---------philo[%d] Meal: %ld Time: %ld Res: %ld-----------\n", data->philos[i].id, data->philos[i].last_meal, time, time - data->philos[i].last_meal);
+			printf("---philo[%d] Meal: %ld Time: %ld Passed: %ld-----------\n", data->philos[i].id, data->philos[i].last_meal, time, time - data->philos[i].last_meal);
 			pthread_mutex_lock(&data->data_mutex);
 			print_status(&data->philos[i], "died");
 			data->life_state = DEAD;

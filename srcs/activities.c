@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:28:02 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/05 15:17:31 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:27:12 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	eating(t_philo *philo)
 	{
 		print_status(philo, "is eating");
 		philo->last_meal = get_time();
-		//printf("------philo[%d]last_meal(eating): %ld-------\n", philo->id ,philo->last_meal);
 		usleep(philo->data->time_to_eat * 1000);
 		philo->eaten_meals++;
 	}
@@ -64,10 +63,9 @@ void	sleep_and_think(t_philo *philo)
 
 int	is_alive(t_philo *philo)
 {
-	//pthread_mutex_lock(&philo->data->data_mutex);
+
 	if (philo->data->life_state == ALIVE)
 		return (1);
 	else
 		return (0);
-	//pthread_mutex_unlock(&philo->data->data_mutex);
 }
