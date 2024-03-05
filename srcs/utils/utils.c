@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:57:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/04 15:13:10 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:34:35 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_isdigit(int arg)
 	return (arg >= '0' && arg <= '9');
 }
 
-long	ft_atol(const char *str)
+int	ft_atoi(const char *str)
 {
-	long long	res;
-	long long	sign;
+	int	res;
+	int	sign;
 
 	res = 0;
 	sign = 1;
@@ -34,7 +34,7 @@ long	ft_atol(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		if (res > LONG_MAX / 10 || res * 10 > LONG_MAX - (*str - '0'))
+		if (res > INT_MAX / 10 || res * 10 > INT_MAX - (*str - '0'))
 			return (-1);
 		res = res * 10 + (*str - '0');
 		str++;
@@ -67,6 +67,7 @@ void	pass_time(long long time, t_philo *philo)
 void	print_status(t_philo *philo, char *status)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("%ld %ld %s\n", get_time() - philo->data->starting_time, philo->id, status);
+	if (philo->data->life_state == ALIVE)
+		printf("%ld %d %s\n", get_time() - philo->data->starting_time, philo->id, status);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }

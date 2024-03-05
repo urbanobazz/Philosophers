@@ -6,14 +6,13 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:48:15 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/04 14:34:17 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:19:34 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 static void	validate_input(int argc, char **argv);
-static void	check_arg(char *argv);
 
 int main(int argc, char **argv)
 {
@@ -45,17 +44,11 @@ static void	validate_input(int argc, char **argv)
 					ft_exit(NULL, "Invalid input: arguments must be composed of numbers\n", 1);
 				j++;
 			}
-			check_arg(argv[i]);
+			if (ft_atoi(argv[i]) == -1)
+				ft_exit(NULL, "Invalid argument", 1);
 			i++;
 		}
 	}
 	else
 		ft_exit(NULL, "Invalid argument amount\n", 1);
-}
-static void	check_arg(char *argv)
-{
-	long n;
-	n = ft_atol(argv);
-	if (n <= 0 || n > INT_MAX)
-		ft_exit(NULL, "Invalid argument", 1);
 }

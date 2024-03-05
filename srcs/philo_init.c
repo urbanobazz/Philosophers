@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 22:55:58 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/04 14:37:32 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:39:31 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,9 @@ static void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	while (philo->data->life_state == ALIVE)
 	{
-		if (take_forks(philo) == DEAD)
-			return (0);
-		if (eating(philo) == DEAD)
-			return (0);
-		if (sleep_and_think(philo) == DEAD)
-			return (0);
+		take_forks(philo);
+		eating(philo);
+		sleep_and_think(philo);
 	}
 	return (0);
 }

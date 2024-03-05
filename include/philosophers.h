@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/03 15:49:29 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 10:39:15 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@
 
 typedef struct s_philo
 {
-	long			id;
-	long			last_meal;
-	long			eaten_meals;
+	int				id;
+	int				last_meal;
+	int				eaten_meals;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				life_state;
 	pthread_t		thread_id;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
@@ -36,11 +40,11 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	long			philo_count;
-	long			time_to_die;
-	long			time_to_eat;
-	long			time_to_sleep;
-	long			meals_count;
+	int				philo_count;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				meals_count;
 	long			starting_time;
 	int				turns;
 	int				life_state;
@@ -62,18 +66,19 @@ void		monitor_philosophers(t_data *data);
 
 // Utils
 int			ft_isdigit(int arg);
-long		ft_atol(const char *str);
+int			ft_atoi(const char *str);
 long		get_time(void);
 void		pass_time(long long time, t_philo *philo);
 void		print_status(t_philo *philo, char *status);
 
 // Exit
-void	ft_exit(t_data *data, char *msg, int status);
+void		ft_exit(t_data *data, char *msg, int status);
 
 // Activities
-int		take_forks(t_philo *philo);
-int		eating(t_philo *philo);
-int		sleep_and_think(t_philo *philo);
+void		take_forks(t_philo *philo);
+void		eating(t_philo *philo);
+void		sleep_and_think(t_philo *philo);
+int			is_alive(t_philo *philo);
 //int		thinking(t_philo *philo);
 
 #endif
