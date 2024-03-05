@@ -6,13 +6,14 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 11:42:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/05 14:04:26 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:40:57 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 static int	check_all_life_state(t_data *data);
+static int	check_meals_eaten(t_data *data);
 
 void	monitor_philosophers(t_data *data)
 {
@@ -20,6 +21,8 @@ void	monitor_philosophers(t_data *data)
 	{
 		usleep(data->time_to_eat);
 		if (check_all_life_state(data) == DEAD)
+			return ;
+		if (check_meals_eaten(data))
 			return ;
 	}
 }
@@ -45,4 +48,22 @@ static int	check_all_life_state(t_data *data)
 		i++;
 	}
 	return (ALIVE);
+}
+
+static int	check_meals_eaten(t_data *data)
+{
+	int i;
+	int check;
+
+	i = 0;
+	check = 0;
+	while (i < data->philo_count)
+	{
+		if (data->philos[i].eaten_meals == data->meals_count)
+			check++;
+		i++;
+	}
+	if (check == data->philo_count)
+		return (data->stop = 1, 1);
+	return (0);
 }

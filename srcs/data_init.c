@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:16:41 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/04 20:20:11 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:37:40 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_data	*data_init(int argc, char **argv)
 	else
 		data->meals_count = -1;
 	data->starting_time = 0;
-	data->turns = 0;
+	data->stop = 0;
 	data->life_state = ALIVE;
 	pthread_mutex_init(&data->data_mutex, NULL);
 	pthread_mutex_init(&data->print_mutex, NULL);

@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/05 13:50:45 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:37:25 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				meals_count;
 	long			starting_time;
-	int				turns;
+	int				stop;
 	int				life_state;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	data_mutex;
