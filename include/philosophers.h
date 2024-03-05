@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/05 10:39:15 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:50:45 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 typedef struct s_philo
 {
 	int				id;
-	int				last_meal;
+	long			last_meal;
 	int				eaten_meals;
 	int				time_to_die;
 	int				time_to_eat;
