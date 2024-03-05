@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/05 15:37:25 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:47:49 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void		monitor_philosophers(t_data *data);
 int			ft_isdigit(int arg);
 int			ft_atoi(const char *str);
 long		get_time(void);
-void		pass_time(long long time, t_philo *philo);
 void		print_status(t_philo *philo, char *status);
 
 // Exit

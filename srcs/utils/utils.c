@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:57:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/04 20:34:35 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:48:02 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,6 @@ long	get_time(void)
 	microseconds = tv.tv_usec;
 	milliseconds = seconds * 1000 + microseconds / 1000;
 	return (milliseconds);
-}
-void	pass_time(long long time, t_philo *philo)
-{
-	long long start;
-
-	start = get_time();
-	while (get_time() - start < time && philo->data->life_state == ALIVE)
-		usleep(100);
 }
 void	print_status(t_philo *philo, char *status)
 {
