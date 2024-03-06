@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 22:55:58 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/05 15:40:24 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:11:28 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@ static void	*routine(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	while (philo->data->life_state == ALIVE)
+	while (1)
 	{
-		if (philo->data->stop)
+		pthread_mutex_lock(&philo->data->data_mutex);
+		if (philo->data->life_state == DEAD || philo->data->stop)
+		{
+			pthread_mutex_unlock(&philo->data->data_mutex);
 			return (0);
+		}
+		pthread_mutex_unlock(&philo->data->data_mutex);
 		take_forks(philo);
-		eating(philo);
-		sleep_and_think(philo);
+		eat_and_sleep(philo);
+		think(philo);
 	}
 	return (0);
 }
@@ -52,7 +57,6 @@ void	join_threads(t_data *data)
 	i = 0;
 	while (i < data->philo_count)
 	{
-		//printf("Joining thread %d\n", i);
 		if (pthread_join(data->philos[i].thread_id, NULL) != 0)
 			ft_exit(data, "Thread join error\n", 1);
 		i++;

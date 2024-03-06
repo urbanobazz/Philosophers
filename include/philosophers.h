@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/05 17:47:49 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:12:13 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	data_mutex;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	waiter_mutex;
 	t_philo			*philos;
 }				t_data;
 
@@ -75,9 +76,8 @@ void		ft_exit(t_data *data, char *msg, int status);
 
 // Activities
 void		take_forks(t_philo *philo);
-void		eating(t_philo *philo);
-void		sleep_and_think(t_philo *philo);
+void		eat_and_sleep(t_philo *philo);
 int			is_alive(t_philo *philo);
-//int		thinking(t_philo *philo);
+void		think(t_philo *philo);
 
 #endif
