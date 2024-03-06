@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:25:05 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/06 17:12:13 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:25:10 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	data_mutex;
 	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	waiter_mutex;
 	t_philo			*philos;
 }				t_data;
 
