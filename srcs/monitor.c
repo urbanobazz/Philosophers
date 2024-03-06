@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 11:42:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/06 15:23:42 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:55:00 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	monitor_philosophers(t_data *data)
 {
 	while (1)
 	{
-		usleep(data->time_to_eat);
+		usleep(5000);
 		if (check_all_life_state(data) == DEAD)
 			return ;
 		if (check_meals_eaten(data))
