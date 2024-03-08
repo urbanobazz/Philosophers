@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:48:15 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/04 20:19:34 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:03:32 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	validate_input(int argc, char **argv);
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data		*data;
 
@@ -41,7 +41,8 @@ static void	validate_input(int argc, char **argv)
 			while (argv[i][j] != '\0')
 			{
 				if (!ft_isdigit(argv[i][j]))
-					ft_exit(NULL, "Invalid input: arguments must be composed of numbers\n", 1);
+					ft_exit(NULL, "Invalid input: arguments \
+									must be composed of numbers\n", 1);
 				j++;
 			}
 			if (ft_atoi(argv[i]) == -1)

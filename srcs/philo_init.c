@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 22:55:58 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/06 17:11:28 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:05:07 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	set_counter(t_data *data);
 
 static void	*routine(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	while (1)
@@ -37,14 +37,15 @@ static void	*routine(void *arg)
 
 void	init_philosophers(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->starting_time = get_time();
 	set_counter(data);
 	while (i < data->philo_count)
 	{
-		if (pthread_create(&data->philos[i].thread_id, NULL, routine, &data->philos[i]) != 0)
+		if (pthread_create(&data->philos[i].thread_id, \
+			NULL, routine, &data->philos[i]) != 0)
 			ft_exit(data, "Thread init error\n", 1);
 		i++;
 	}
@@ -52,7 +53,7 @@ void	init_philosophers(t_data *data)
 
 void	join_threads(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->philo_count)
@@ -65,7 +66,7 @@ void	join_threads(t_data *data)
 
 void	set_counter(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->philo_count)

@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:28:02 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/08 10:43:59 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:58:49 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ void	take_forks(t_philo *philo)
 	}
 	else
 	{
-		if (philo->eaten_meals == 0 && (philo->data->philo_count % 2) != 0 && philo->id == 1)
+		if (philo->eaten_meals == 0
+			&& (philo->data->philo_count % 2) != 0 && philo->id == 1)
 			usleep(philo->time_to_eat * 1000);
 		pthread_mutex_lock(philo->left_fork);
 		print_status(philo, "has taken a fork");
 		if (handle_one(philo))
-		return ;
+			return ;
 		pthread_mutex_lock(philo->right_fork);
 		print_status(philo, "has taken a fork");
 	}
@@ -85,7 +86,8 @@ void	think(t_philo *philo)
 {
 	print_status(philo, "is thinking");
 	if (philo->data->philo_count % 2 == 0)
-		usleep (10);
+		usleep (philo->time_to_eat * 10);
 	else
-		usleep((philo->time_to_die - philo->time_to_eat - philo->time_to_sleep) * 900);
+		usleep((philo->time_to_die - philo->time_to_eat \
+				- philo->time_to_sleep) * 900);
 }

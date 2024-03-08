@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:57:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/06 14:35:46 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:06:14 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,23 @@ int	ft_atoi(const char *str)
 
 long	get_time(void)
 {
-	struct timeval tv;
-	long long seconds;
-	long long microseconds;
-	long long milliseconds;
+	struct timeval	tv;
+	long long		seconds;
+	long long		microseconds;
+	long long		milliseconds;
 
 	gettimeofday(&tv, NULL);
-
 	seconds = tv.tv_sec;
 	microseconds = tv.tv_usec;
 	milliseconds = seconds * 1000 + microseconds / 1000;
 	return (milliseconds);
 }
+
 void	print_status(t_philo *philo, char *status)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
 	if (philo->data->life_state == ALIVE)
-		printf("%ld %d %s\n", get_time() - philo->data->starting_time, philo->id, status);
+		printf("%ld %d %s\n", get_time() - philo->data->starting_time, \
+				philo->id, status);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }

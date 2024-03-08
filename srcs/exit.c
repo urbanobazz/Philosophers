@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:20:01 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/02 14:39:34 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:02:06 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_exit(t_data *data, char *msg, int status)
 
 static void	free_forks(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->philo_count)
@@ -43,4 +43,3 @@ static void	free_forks(t_data *data)
 	}
 	free(data->forks);
 }
-

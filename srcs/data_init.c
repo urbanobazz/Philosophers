@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:16:41 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/06 17:11:41 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:01:44 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ t_data	*data_init(int argc, char **argv)
 {
 	t_data	*data;
 
-	if (!(data = (t_data *)malloc(sizeof(t_data))))
+	data = (t_data *)malloc(sizeof(t_data));
+	if (!data)
 		ft_exit(NULL, "Malloc error\n", 1);
 	data->philo_count = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
@@ -41,7 +42,7 @@ t_data	*data_init(int argc, char **argv)
 
 static void	philos_init(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->philos = (t_philo *)malloc(sizeof(t_philo) * data->philo_count);
@@ -68,7 +69,8 @@ static void	forks_init(t_data *data)
 	int	i;
 
 	i = 0;
-	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->philo_count);
+	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
+					* data->philo_count);
 	if (!data->forks)
 		ft_exit(data, "Malloc error(3)\n", 1);
 	while (i < data->philo_count)
