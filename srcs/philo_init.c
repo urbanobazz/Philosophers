@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 22:55:58 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/08 11:05:07 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:15:18 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	*routine(void *arg)
 			return (0);
 		}
 		pthread_mutex_unlock(&philo->data->data_mutex);
-		take_forks(philo);
+		if (take_forks(philo))
+			continue ;
 		eat_and_sleep(philo);
 		think(philo);
 	}
