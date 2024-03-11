@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:24:08 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 17:49:56 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:04:37 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				meals_count;
 	long			starting_time;
-	int				stop;
 	int				life_state;
+	sem_t			*stop;
 	sem_t			*forks; // change to sem_t
 	sem_t			*data_sem;
 	sem_t			*print_sem;

@@ -6,11 +6,11 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 11:42:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 17:41:36 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:03:06 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "bonus.h"
 
 static int	check_life_state(t_philo *philo);
 static int	check_meals_eaten(t_philo *philo);
@@ -35,27 +35,27 @@ static int	check_life_state(t_philo *philo)
 	long	time;
 
 	time = get_time();
-	sem_wait(philo->data->data_mutex);
+	sem_wait(philo->data->data_sem);
 	if (time - philo->last_meal > philo->time_to_die)
 	{
 		print_status(philo, "died");
 		philo->life_state = DEAD;
-		sem_post(philo->data->data_mutex);
+		sem_post(philo->data->data_sem);
 		return (DEAD);
 	}
-	sem_post(philo->data->data_mutex);
+	sem_post(philo->data->data_sem);
 	return (ALIVE);
 }
 
 static int	check_meals_eaten(t_philo *philo)
 {
-	sem_wait(philo->data->data_mutex);
+	sem_wait(philo->data->data_sem);
 	if (philo->eaten_meals == philo->data->meals_count)
 	{
 		philo->life_state = DEAD;
-		sem_post(philo->data->data_mutex);
+		sem_post(philo->data->data_sem);
 		return (1);
 	}
-	sem_post(philo->data->data_mutex);
+	sem_post(philo->data->data_sem);
 	return (0);
 }

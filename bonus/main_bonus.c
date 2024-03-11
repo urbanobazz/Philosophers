@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:23:12 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 17:52:41 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:08:39 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	main(int argc, char **argv)
 
 	validate_input(argc, argv);
 	data = data_init(argc, argv);
+	sem_wait(data->stop);
 	create_philos(data);
+	sem_wait(data->stop);
+	sem_post(data->stop);
 	ft_exit(data, NULL, 0);
 	return (0);
 }
