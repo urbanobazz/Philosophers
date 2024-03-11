@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:48:15 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/08 11:03:32 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:48:13 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	validate_input(int argc, char **argv)
 			}
 			if (ft_atoi(argv[i]) == -1)
 				ft_exit(NULL, "Invalid argument", 1);
+			if (i == 1 && ft_atoi(argv[i]) > 200)
+				ft_exit(NULL, "ERROR: Philosophers limit exceeded", 1);
 			i++;
 		}
 	}
