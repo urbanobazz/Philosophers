@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 11:42:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 18:03:06 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:53:14 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ void	*monitor_philosophers(void *arg)
 	{
 		usleep(5000);
 		if (check_life_state(philo) == DEAD)
-			return ;
+			break ;
 		if (check_meals_eaten(philo))
-			return ;
+			break ;
 	}
+	return (0);
 }
 
 static int	check_life_state(t_philo *philo)

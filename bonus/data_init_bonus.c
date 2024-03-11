@@ -6,14 +6,13 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:16:46 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 15:29:42 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:53:51 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus.h"
 
 static void	philos_init(t_data *data);
-static void	forks_init(t_data *data);
 
 t_data	*data_init(int argc, char **argv)
 {

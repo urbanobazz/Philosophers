@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:48:59 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 18:46:16 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:46:33 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	routine(t_philo *philo)
 		if (philo->life_state == DEAD)
 		{
 			sem_post(philo->data->data_sem);
-			return (0);
+			break ;
 		}
 		sem_post(philo->data->data_sem);
 		if (take_forks(philo))
@@ -34,7 +34,6 @@ void	routine(t_philo *philo)
 		eat_and_sleep(philo);
 		think(philo);
 	}
-	return (0);
 }
 
 void	create_philos(t_data *data)
@@ -49,7 +48,7 @@ void	create_philos(t_data *data)
 		data->philos[i].pid = fork();
 		if (data->philos[i].pid == 0)
 		{
-			ft_routine(data->philos[i]);
+			routine(&data->philos[i]);
 			exit(0);
 		}
 		i++;

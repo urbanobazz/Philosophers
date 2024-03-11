@@ -15,7 +15,7 @@ SRCS	=	srcs/main.c \
 BONUS_NAME = philo_bonus
 BONUS_OBJDIR = bonus_obj
 BONUS_INCLUDE = -I ./bonus/bonus.h
-BONUS_OBJS	=	$(SRCS:%.c=$(OBJDIR)/%.o)
+BONUS_OBJS	=	$(BONUS_SRCS:%.c=%.o)
 BONUS_SRCS	=	bonus/main_bonus.c \
 				bonus/routine_bonus.c \
 				bonus/utils_bonus.c \
@@ -39,7 +39,7 @@ $(NAME): $(OBJS)
 bonus:$(BONUS_OBJDIR) $(BONUS_NAME)
 
 $(BONUS_OBJDIR):
-	@mkdir -p $(OBJDIR)
+	@mkdir -p $(BONUS_OBJDIR)
 
 $(BONUS_OBJDIR)/%.o: %.c
 	@$(CC) -o $@ -c $< $(BONUS_INCLUDE) && printf "Compiling: $(notdir $<)\n"
