@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:16:41 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 12:35:03 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:50:58 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void	philos_init(t_data *data)
 		data->philos[i].thread_id = 0;
 		data->philos[i].right_fork = &data->forks[i];
 		if (data->philo_count > 1)
-			data->philos[i].left_fork = &data->forks[(i + 1) % data->philo_count];
+			data->philos[i].left_fork = \
+			&data->forks[(i + 1) % data->philo_count];
 		else
 			data->philos[i].left_fork = 0;
 		data->philos[i].data = data;

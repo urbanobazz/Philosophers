@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:28:02 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 12:15:32 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:50:09 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	take_forks(t_philo *philo)
 	else
 	{
 		if (handle_one(philo))
-			return(1);
+			return (1);
 		if (philo->eaten_meals == 0
 			&& (philo->data->philo_count % 2) != 0 && philo->id == 1)
 			usleep(philo->time_to_eat * 1000);
