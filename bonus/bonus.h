@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:24:08 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 15:34:15 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:49:56 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 # include <semaphore.h>
 # include <fcntl.h>
+# include <signal.h>
 
 
 # define DEAD 1
@@ -56,12 +57,35 @@ typedef struct s_data
 	t_philo			*philos;
 }				t_data;
 
+// data_init
 t_data	*data_init(int argc, char **argv);
+
+// exit
 void	ft_exit(t_data *data, char *msg, int status);
+
 // Utils
 int			ft_isdigit(int arg);
 int			ft_atoi(const char *str);
 long		get_time(void);
 void		print_status(t_philo *philo, char *status);
+
+// Activities
+int		take_forks(t_philo *philo);
+void	eat_and_sleep(t_philo *philo);
+int		handle_one(t_philo *philo);
+void	think(t_philo *philo);
+
+// Routine
+void	routine(t_philo *philo);
+void	create_philos(t_data *data);
+void	set_counter(t_data *data);
+
+// Monitor
+void	*monitor_philosophers(void *arg);
+
+//routine
+void	routine(t_philo *philo);
+void	create_philos(t_data *data);
+void	set_counter(t_data *data);
 
 #endif

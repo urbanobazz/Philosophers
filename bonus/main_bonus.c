@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:23:12 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 15:32:46 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:52:41 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int	main(int argc, char **argv)
 
 	validate_input(argc, argv);
 	data = data_init(argc, argv);
-	init_philosophers(data);
-	monitor_philosophers(data);
-	join_threads(data);
+	create_philos(data);
 	ft_exit(data, NULL, 0);
 	return (0);
 }

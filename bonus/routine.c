@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:48:59 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 15:45:01 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:36:41 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 void	set_counter(t_data *data);
 
-static void	*routine(void *arg)
+void	routine(t_philo *philo)
 {
-	t_philo	*philo;
+	pthread_t	life_state;
 
-	philo = (t_philo *)arg;
+	pthread_create(&life_state, NULL, monitor_philosophers, philo);
+	pthread_detach(life_state);
 	while (1)
 	{
 		sem_wait(philo->data->data_sem);
-		if (philo->data->life_state == DEAD || philo->data->stop)
+		if (philo->life_state == DEAD)
 		{
 			sem_post(philo->data->data_sem);
 			return (0);
@@ -52,21 +53,9 @@ void	create_philos(t_data *data)
 			exit(0);
 		}
 		i++;
-		usleep(100);
 	}
 }
 
-void	wait_for_philos(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->philo_count)
-	{
-		waitpid(data->philos[i].pid, 0, 0);
-		i++;
-	}
-}
 void	set_counter(t_data *data)
 {
 	int	i;
