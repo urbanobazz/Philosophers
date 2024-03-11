@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:24:08 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/08 18:43:00 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:34:15 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <sys/wait.h>
 # include <limits.h>
-//# include <semaphore.h>
+# include <semaphore.h>
+# include <fcntl.h>
 
 
 # define DEAD 1
@@ -48,9 +50,9 @@ typedef struct s_data
 	long			starting_time;
 	int				stop;
 	int				life_state;
-	void			*forks; // change to sem_t
-	void			*data_sem;
-	void			*print_sem;
+	sem_t			*forks; // change to sem_t
+	sem_t			*data_sem;
+	sem_t			*print_sem;
 	t_philo			*philos;
 }				t_data;
 

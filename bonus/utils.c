@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:57:39 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/08 17:33:47 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:31:35 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ long	get_time(void)
 
 void	print_status(t_philo *philo, char *status)
 {
-	pthread_mutex_lock(&philo->data->print_mutex);
+	sem_wait(&philo->data->print_sem);
 	if (philo->data->life_state == ALIVE)
 		printf("%ld %d %s\n", get_time() - philo->data->starting_time, \
 				philo->id, status);
-	pthread_mutex_unlock(&philo->data->print_mutex);
+	sem_post(&philo->data->print_sem);
 }

@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:16:46 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/08 18:44:03 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:29:42 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_data	*data_init(int argc, char **argv)
 	data->stop = 0;
 	data->life_state = ALIVE;
 	data->forks = sem_open("forks", O_CREAT, 0644, data->philo_count);
+	data->data_sem = sem_open("data_sem", O_CREAT, 0644, 1);
+	data->print_sem = sem_open("print_sem", O_CREAT, 0644, 1);
 	philos_init(data);
 	return (data);
 }
