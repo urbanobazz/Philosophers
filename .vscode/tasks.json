@@ -4,7 +4,7 @@
 		{
 			"label": "build philo",
 			"type": "shell",
-			"command": "make",
+			"command": "make bonus",
 			"group": {
 				"kind": "build",
 				"isDefault": true
