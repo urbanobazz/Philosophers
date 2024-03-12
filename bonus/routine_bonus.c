@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:48:59 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 19:46:33 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:40:02 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	routine(t_philo *philo)
 		eat_and_sleep(philo);
 		think(philo);
 	}
+	sem_post(philo->data->stop);
 }
 
 void	create_philos(t_data *data)

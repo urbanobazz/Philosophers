@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:26:25 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 17:50:37 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:33:17 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,20 @@ static void	kill_all(t_data *data);
 
 void	ft_exit(t_data *data, char *msg, int status)
 {
-	kill_all(data);
 	if (data)
 	{
+		kill_all(data);
 		if (data->philos)
 			free(data->philos);
 		sem_close(data->forks);
 		sem_close(data->data_sem);
 		sem_close(data->print_sem);
+		/* if (sem_unlink("stop_sem") == 0)
+			printf("fdgjad"); */
+		sem_unlink("stop_sem");
+		sem_unlink("forks");
+		sem_unlink("data_sem");
+		sem_unlink("print_sem");
 		free(data);
 	}
 	if (msg)

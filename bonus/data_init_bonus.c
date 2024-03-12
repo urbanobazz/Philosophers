@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:16:46 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 19:53:51 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:32:45 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,15 @@ t_data	*data_init(int argc, char **argv)
 	else
 		data->meals_count = -1;
 	data->starting_time = 0;
-	data->stop = 0;
 	data->life_state = ALIVE;
+	// add if
+	sem_unlink("stop_sem");
+	sem_unlink("forks");
+	sem_unlink("data_sem");
+	sem_unlink("print_sem");
+	data->stop = sem_open("stop_sem", O_CREAT, 0644, 1);
+	/* if (data->stop  == SEM_FAILED)
+		printf("sdlk"); */
 	data->forks = sem_open("forks", O_CREAT, 0644, data->philo_count);
 	data->data_sem = sem_open("data_sem", O_CREAT, 0644, 1);
 	data->print_sem = sem_open("print_sem", O_CREAT, 0644, 1);
