@@ -6,42 +6,63 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:48:59 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/12 19:40:02 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:43:22 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus.h"
 
 void	set_counter(t_data *data);
+static int check_exit(t_data *data, int code);
 
-void	routine(t_philo *philo)
+int	routine(t_philo *philo)
 {
-	pthread_t	life_state;
-
-	pthread_create(&life_state, NULL, monitor_philosophers, philo);
-	pthread_detach(life_state);
 	while (1)
 	{
-		sem_wait(philo->data->data_sem);
-		if (philo->life_state == DEAD)
+		if (!end_simulation(philo))
+			if (take_forks(philo))
+				return (DEAD);
+		if (!end_simulation(philo))
+			eat_and_sleep(philo);
+		if (!end_simulation(philo))
+			think(philo);
+		else
 		{
-			sem_post(philo->data->data_sem);
-			break ;
+			if (end_simulation(philo) == 1)
+				return (DEAD);
+			if (end_simulation(philo) == 2)
+				return (ALIVE);
 		}
-		sem_post(philo->data->data_sem);
-		if (take_forks(philo))
-			continue ;
-		eat_and_sleep(philo);
-		think(philo);
 	}
-	sem_post(philo->data->stop);
+	return (ALIVE);
+}
+int	end_simulation(t_philo *philo)
+{
+	long	time;
+	int i;
+
+	i = 0;
+	time = get_time();
+	if (time - philo->last_meal > philo->time_to_die)
+	{
+		print_status(philo, "died");
+		philo->life_state = DEAD;
+		return (1);
+	}
+	if (philo->eaten_meals == philo->data->meals_count)
+		return (2);
+	else
+		return (0);
+
 }
 
 void	create_philos(t_data *data)
 {
 	int	i;
+	int exit_code;
 
 	i = 0;
+	exit_code = 0;
 	data->starting_time = get_time();
 	set_counter(data);
 	while (i < data->philo_count)
@@ -49,8 +70,10 @@ void	create_philos(t_data *data)
 		data->philos[i].pid = fork();
 		if (data->philos[i].pid == 0)
 		{
-			routine(&data->philos[i]);
-			exit(0);
+			exit_code = routine(&data->philos[i]);
+			if (exit_code == DEAD)
+				sem_wait(data->print_sem);
+			exit(exit_code);
 		}
 		i++;
 	}
@@ -64,6 +87,41 @@ void	set_counter(t_data *data)
 	while (i < data->philo_count)
 	{
 		data->philos[i].last_meal = data->starting_time;
+		i++;
+	}
+}
+
+static int check_exit(t_data *data, int code)
+{
+	int i;
+
+	i = 0;
+	if (code == DEAD)
+	{
+		//printf("code: %d\n", code);
+		//sem_wait(data->print_sem);
+		while (i < data->philo_count)
+		{
+			//printf("%d was killed\n", data->philos[i].id);
+			kill(data->philos[i].pid, SIGTERM);
+			i++;
+		}
+		//sem_post(data->print_sem);
+		return (DEAD);
+	}
+	return (ALIVE);
+}
+
+void	wait_for_philos(t_data *data)
+{
+	int i;
+	int status;
+
+	i = 0;
+	while (i < data->philo_count)
+	{
+		waitpid(-1, &status, 0);
+		check_exit(data, WEXITSTATUS(status));
 		i++;
 	}
 }

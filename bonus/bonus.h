@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:24:08 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/11 18:04:37 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:32:27 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,14 @@ int		handle_one(t_philo *philo);
 void	think(t_philo *philo);
 
 // Routine
-void	routine(t_philo *philo);
+int		routine(t_philo *philo);
 void	create_philos(t_data *data);
 void	set_counter(t_data *data);
+void	wait_for_philos(t_data *data);
+int	end_simulation(t_philo *philo);
 
 // Monitor
 void	*monitor_philosophers(void *arg);
 
-//routine
-void	routine(t_philo *philo);
-void	create_philos(t_data *data);
-void	set_counter(t_data *data);
 
 #endif

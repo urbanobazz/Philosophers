@@ -15,7 +15,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/bonus/philo_bonus",
-			"args": ["5", "800", "200", "200"],
+			"args": ["5", "400", "200", "200"],
 			"cwd": "${workspaceFolder}/bonus",
 			"preLaunchTask": "build philo",
 			"MIMode": "gdb",
@@ -25,7 +25,7 @@
 					"description": "Enable pretty-printing for gdb",
 					"text": "-enable-pretty-printing",
 					"ignoreFailures": true
-				}
+				},
 			]
 		}
 	]

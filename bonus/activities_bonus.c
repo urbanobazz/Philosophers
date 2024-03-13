@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:02:27 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/12 19:34:59 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:55:49 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	take_forks(t_philo *philo)
 		else if ((philo->data->philo_count % 2) != 0 && philo->id == 1)
 			usleep(philo->time_to_eat * 1000);
 	}
-	//if
 	sem_wait(philo->data->forks);
 	print_status(philo, "has taken a fork");
 	sem_wait(philo->data->forks);
@@ -36,7 +35,6 @@ void	eat_and_sleep(t_philo *philo)
 	sem_wait(philo->data->data_sem);
 	philo->last_meal = get_time();
 	print_status(philo, "is eating");
-	// might fail
 	sem_post(philo->data->data_sem);
 	usleep(philo->data->time_to_eat * 1000);
 	sem_wait(philo->data->data_sem);
@@ -44,8 +42,11 @@ void	eat_and_sleep(t_philo *philo)
 	sem_post(philo->data->data_sem);
 	sem_post(philo->data->forks);
 	sem_post(philo->data->forks);
-	print_status(philo, "is sleeping");
-	usleep(philo->data->time_to_sleep * 1000);
+	if (end_simulation(philo) == 0 || end_simulation(philo) == 2)
+	{
+		print_status(philo, "is sleeping");
+		usleep(philo->data->time_to_sleep * 1000);
+	}
 }
 
 int	handle_one(t_philo *philo)

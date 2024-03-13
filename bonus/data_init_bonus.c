@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:16:46 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/12 19:32:45 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:32:36 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void	philos_init(t_data *data)
 		data->philos[i].eaten_meals = 0;
 		data->philos[i].pid = -1;
 		data->philos[i].data = data;
+		data->philos[i].life_state = ALIVE;
 		i++;
 	}
 }
