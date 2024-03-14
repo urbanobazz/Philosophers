@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:26:25 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/14 10:10:15 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/14 11:23:18 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_exit(t_data *data, char *msg, int status)
 			data->philos = NULL;
 		}
 		sem_close(data->forks);
+		sem_close(data->stop);
 		sem_close(data->data_sem);
 		sem_close(data->print_sem);
 		sem_unlink("stop_sem");

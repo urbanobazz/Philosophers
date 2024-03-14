@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:23:12 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/14 10:25:37 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/14 11:45:48 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static int	check_exit(t_data *data, int code)
 			kill(data->philos[i].pid, SIGTERM);
 			i++;
 		}
+		sem_post(data->print_sem);
 		return (DEAD);
 	}
 	return (ALIVE);
