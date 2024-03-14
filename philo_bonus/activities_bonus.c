@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:02:27 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/14 13:54:07 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:23:22 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	pass_time(t_philo *philo, int time)
 	{
 		usleep(time);
 		if (end_simulation(philo) == 1)
-			break;
+			break ;
 		i++;
 	}
 }
