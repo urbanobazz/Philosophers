@@ -6,7 +6,6 @@ BONUS_OBJS		=	$(BONUS_SRCS:%.c=$(BONUS_OBJDIR)/%.o)
 BONUS_SRCS		=	main_bonus.c \
 					routine_bonus.c \
 					utils_bonus.c \
-					monitor_bonus.c \
 					exit_bonus.c \
 					data_init_bonus.c \
 					activities_bonus.c

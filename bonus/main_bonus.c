@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:23:12 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/13 18:56:37 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:25:37 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,35 @@ static void	validate_input(int argc, char **argv)
 	}
 	else
 		ft_exit(NULL, "Invalid argument amount\n", 1);
+}
+
+static int	check_exit(t_data *data, int code)
+{
+	int	i;
+
+	i = 0;
+	if (code == DEAD)
+	{
+		while (i < data->philo_count)
+		{
+			kill(data->philos[i].pid, SIGTERM);
+			i++;
+		}
+		return (DEAD);
+	}
+	return (ALIVE);
+}
+
+void	wait_for_philos(t_data *data)
+{
+	int	i;
+	int	status;
+
+	i = 0;
+	while (i < data->philo_count)
+	{
+		waitpid(-1, &status, 0);
+		check_exit(data, WEXITSTATUS(status));
+		i++;
+	}
 }

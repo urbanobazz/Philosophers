@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:02:27 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/13 17:55:49 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:08:27 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	handle_one(t_philo *philo)
 	}
 	return (0);
 }
+
 void	think(t_philo *philo)
 {
 	print_status(philo, "is thinking");

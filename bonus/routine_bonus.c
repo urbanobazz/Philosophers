@@ -6,14 +6,13 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:48:59 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/13 19:43:22 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:26:20 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus.h"
 
-void	set_counter(t_data *data);
-static int check_exit(t_data *data, int code);
+void		set_counter(t_data *data);
 
 int	routine(t_philo *philo)
 {
@@ -36,10 +35,11 @@ int	routine(t_philo *philo)
 	}
 	return (ALIVE);
 }
+
 int	end_simulation(t_philo *philo)
 {
 	long	time;
-	int i;
+	int		i;
 
 	i = 0;
 	time = get_time();
@@ -53,13 +53,12 @@ int	end_simulation(t_philo *philo)
 		return (2);
 	else
 		return (0);
-
 }
 
 void	create_philos(t_data *data)
 {
 	int	i;
-	int exit_code;
+	int	exit_code;
 
 	i = 0;
 	exit_code = 0;
@@ -73,7 +72,7 @@ void	create_philos(t_data *data)
 			exit_code = routine(&data->philos[i]);
 			if (exit_code == DEAD)
 				sem_wait(data->print_sem);
-			exit(exit_code);
+			exit (exit_code);
 		}
 		i++;
 	}
@@ -87,41 +86,6 @@ void	set_counter(t_data *data)
 	while (i < data->philo_count)
 	{
 		data->philos[i].last_meal = data->starting_time;
-		i++;
-	}
-}
-
-static int check_exit(t_data *data, int code)
-{
-	int i;
-
-	i = 0;
-	if (code == DEAD)
-	{
-		//printf("code: %d\n", code);
-		//sem_wait(data->print_sem);
-		while (i < data->philo_count)
-		{
-			//printf("%d was killed\n", data->philos[i].id);
-			kill(data->philos[i].pid, SIGTERM);
-			i++;
-		}
-		//sem_post(data->print_sem);
-		return (DEAD);
-	}
-	return (ALIVE);
-}
-
-void	wait_for_philos(t_data *data)
-{
-	int i;
-	int status;
-
-	i = 0;
-	while (i < data->philo_count)
-	{
-		waitpid(-1, &status, 0);
-		check_exit(data, WEXITSTATUS(status));
 		i++;
 	}
 }

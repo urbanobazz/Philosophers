@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:24:08 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/13 18:32:27 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:23:52 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <semaphore.h>
 # include <fcntl.h>
 # include <signal.h>
-
 
 # define DEAD 1
 # define ALIVE 0
@@ -51,7 +50,7 @@ typedef struct s_data
 	long			starting_time;
 	int				life_state;
 	sem_t			*stop;
-	sem_t			*forks; // change to sem_t
+	sem_t			*forks;
 	sem_t			*data_sem;
 	sem_t			*print_sem;
 	t_philo			*philos;
@@ -64,10 +63,10 @@ t_data	*data_init(int argc, char **argv);
 void	ft_exit(t_data *data, char *msg, int status);
 
 // Utils
-int			ft_isdigit(int arg);
-int			ft_atoi(const char *str);
-long		get_time(void);
-void		print_status(t_philo *philo, char *status);
+int		ft_isdigit(int arg);
+int		ft_atoi(const char *str);
+long	get_time(void);
+void	print_status(t_philo *philo, char *status);
 
 // Activities
 int		take_forks(t_philo *philo);
@@ -80,10 +79,6 @@ int		routine(t_philo *philo);
 void	create_philos(t_data *data);
 void	set_counter(t_data *data);
 void	wait_for_philos(t_data *data);
-int	end_simulation(t_philo *philo);
-
-// Monitor
-void	*monitor_philosophers(void *arg);
-
+int		end_simulation(t_philo *philo);
 
 #endif
