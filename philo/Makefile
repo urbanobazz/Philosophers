@@ -23,18 +23,12 @@ $(OBJDIR)/%.o: %.c
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(INCLUDE) -o $(NAME)
 
-
-bonus:
-	@make -C ./bonus
-
 clean:
 	@rm -rf $(OBJDIR)
-	@make clean -C ./bonus
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make fclean -C ./bonus
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

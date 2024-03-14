@@ -6,13 +6,13 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:02:27 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/14 13:07:34 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:54:07 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus.h"
 
-void	pass_time(t_philo *philo, int i);
+void	pass_time(t_philo *philo, int time);
 
 int	take_forks(t_philo *philo)
 {
@@ -38,7 +38,7 @@ void	eat_and_sleep(t_philo *philo)
 	philo->last_meal = get_time();
 	print_status(philo, "is eating");
 	sem_post(philo->data->data_sem);
-	pass_time(philo, 1);
+	pass_time(philo, philo->time_to_eat * 50);
 	sem_wait(philo->data->data_sem);
 	philo->eaten_meals++;
 	sem_post(philo->data->data_sem);
@@ -47,7 +47,7 @@ void	eat_and_sleep(t_philo *philo)
 	if (end_simulation(philo) == 0 || end_simulation(philo) == 2)
 	{
 		print_status(philo, "is sleeping");
-		pass_time(philo, 2);
+		pass_time(philo, philo->time_to_sleep * 50);
 	}
 }
 
@@ -74,7 +74,7 @@ void	think(t_philo *philo)
 				- philo->time_to_sleep) * 900);
 }
 
-void	pass_time(t_philo *philo, int i)
+/* void	pass_time(t_philo *philo, int i)
 {
 	if (i == 1)
 	{
@@ -89,5 +89,19 @@ void	pass_time(t_philo *philo, int i)
 			usleep((philo->time_to_die - philo->time_to_eat) * 1000);
 		else
 			usleep(philo->time_to_sleep * 1000);
+	}
+} */
+
+void	pass_time(t_philo *philo, int time)
+{
+	int	i;
+
+	i = 0;
+	while (i < 20)
+	{
+		usleep(time);
+		if (end_simulation(philo) == 1)
+			break;
+		i++;
 	}
 }
