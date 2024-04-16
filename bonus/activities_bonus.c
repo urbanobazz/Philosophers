@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 19:02:27 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/14 13:07:34 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:57:28 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,12 @@ void	think(t_philo *philo)
 	if (philo->data->philo_count % 2 == 0)
 		usleep (philo->time_to_eat * 10);
 	else
-		usleep((philo->time_to_die - philo->time_to_eat \
-				- philo->time_to_sleep) * 900);
+	{
+		if (((philo->time_to_die - philo->time_to_eat \
+				- philo->time_to_sleep) * 900) > 0)
+			usleep((philo->time_to_die - philo->time_to_eat \
+					- philo->time_to_sleep) * 900);
+	}
 }
 
 void	pass_time(t_philo *philo, int i)
