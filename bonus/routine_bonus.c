@@ -6,7 +6,7 @@
 /*   By: ubazzane <ubazzane@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:48:59 by ubazzane          #+#    #+#             */
-/*   Updated: 2024/03/14 10:26:20 by ubazzane         ###   ########.fr       */
+/*   Updated: 2024/04/16 21:03:01 by ubazzane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int	routine(t_philo *philo)
 	}
 	return (ALIVE);
 }
+/* !Disclaimer: the way monitoring works in this case is NOT ideal,
+it may create delays on the death timestamp.
+For a better result, create a monitoring thread in the child processes. */
 
 int	end_simulation(t_philo *philo)
 {
